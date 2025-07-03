@@ -214,9 +214,6 @@ def index():
     return render_template('index.html')
 
 if __name__ == "__main__":
-    print("Starting GitHub Webhook Receiver...")
-    print(f"MongoDB URI: {MONGODB_URI}")
-    print(f"Webhook Secret configured: {"Yes" if GITHUB_WEBHOOK_SECRET else "No"}")
-    
+   
     # Run the Flask app
     app.run(host="0.0.0.0", port=5000, debug=True)
