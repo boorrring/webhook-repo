@@ -38,17 +38,39 @@ pip install -r requirements.txt
 python app.py
 ```
 
-### 5. Configure GitHub Webhook
+### 5. Setting up Ngrok for Webhook Testing
 
-In your GitHub repository (action-repo):
+To test GitHub webhooks locally, you'll need to expose your local server to the internet. Ngrok is a tool that creates a secure tunnel to your localhost.
 
-1. Go to `Settings` -> `Webhooks`.
-2. Click `Add webhook`.
-3. Set `Payload URL` to your deployed Flask application's webhook endpoint (e.g., `http://your-domain.com/webhook`).
-4. Set `Content type` to `application/json`.
-5. Enter your `GITHUB_WEBHOOK_SECRET` in the `Secret` field.
-6. Select individual events: `Pushes`, `Pull requests`.
-7. Click `Add webhook`.
+1. Install Ngrok
+   ```bash
+   # On Linux/macOS using homebrew
+   brew install ngrok
+   
+   # Or download from https://ngrok.com/download
+   ```
+
+2. Start your Flask application
+   ```bash
+   python app.py
+   ```
+
+3. In a new terminal, start Ngrok to expose port 5000
+   ```bash
+   ngrok http 5000
+   ```
+
+4. Copy the HTTPS URL provided by Ngrok (looks like `https://xxxx-xx-xx-xxx-xx.ngrok.io`)
+
+5. Configure GitHub Webhook:
+   - Go to your GitHub repository
+   - Navigate to Settings > Webhooks > Add webhook
+   - Paste your Ngrok URL + "/webhook" (e.g., `https://xxxx-xx-xx-xxx-xx.ngrok.io/webhook`)
+   - Set Content type to `application/json`
+   - Select events you want to receive (e.g., Push events, Pull requests)
+   - Click "Add webhook"
+
+Note: Ngrok URLs change every time you restart Ngrok unless you have a paid account. You'll need to update your webhook URL in GitHub settings whenever the Ngrok URL changes.
 
 ## Event Formats
 
