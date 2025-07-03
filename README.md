@@ -11,7 +11,7 @@ This application receives GitHub webhook events (Push, Pull Request, Merge), sto
 ### 1. Clone the repository
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/boorrring/webhook-repo.git
 cd webhook-repo
 ```
 
@@ -21,7 +21,6 @@ Create a `.env` file in the `webhook-repo` directory with the following content:
 
 ```
 MONGODB_URI=your_mongodb_connection_string
-GITHUB_WEBHOOK_SECRET=your_github_webhook_secret
 ```
 
 - `MONGODB_URI`: Your MongoDB connection string (e.g., `mongodb://localhost:27017/webhook_events`).
@@ -55,7 +54,7 @@ In your GitHub repository (action-repo):
 
 - **Push**: `{author} pushed to {to_branch} on {timestamp}`
 - **Pull Request**: `{author} submitted a pull request from {from_branch} to {to_branch} on {timestamp}`
-- **Merge (Bonus)**: `{author} merged branch {from_branch} to {to_branch} on {timestamp}`
+- **Merge**: `{author} merged branch {from_branch} to {to_branch} on {timestamp}`
 
 
 
